@@ -1,0 +1,35 @@
+<body>
+    <div class="img-container">
+
+        <img src="assets/Teskerti__1_-removebg-preview.png">
+
+    </div>
+    <div class="global-container">
+
+
+        <div class="login-container">
+            <div class="login-control">
+                <div class="row login">
+                    <h1><span> S</span>ign <span>I</span>n</h1>
+                </div>
+                <div class="usernamePassword">
+                    <div class="p-inputgroup Username">
+                        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" [(ngModel)]="username" placeholder="name@example.com">
+                    </div>
+                    <div class="p-inputgroup Password">
+                        <span class="p-inputgroup-addon"><i class="pi pi-unlock"></i></span>
+                        <input type="password" class="form-control" id="inputPassword" [(ngModel)]="password">
+                    </div>
+
+                </div>
+                <div class="row-button">
+                    <button class="button" (click)="getuser()"> Connect</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- <div class="forget-password">
+        <p>Did you forgot your Password ?<a>recover it here</a></p>
+    </div> -->

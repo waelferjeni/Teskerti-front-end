@@ -1,0 +1,86 @@
+<body>
+
+
+    <div class="main">
+
+        <div style="margin: 1em;">
+            <h1><span class="v">V</span>os tickets:</h1>
+        </div>
+        <div>
+            <p-table [value]="tickets" [paginator]="true" [rows]="5">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Type</th>
+                        <th>date d'achat</th>
+                        <th>Nom d'employé</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-ticket>
+                    <tr>
+                        <td>{{ticket.type}}</td>
+                        <td>{{DateFormat(ticket.dateAchat)}}</td>
+                        <td>{{ticket.employee.firstName}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+            <h6> <span>prix total : {{this.prixtotal.toFixed(1)}} </span>DT</h6>
+        </div>
+
+
+
+
+
+        <div class="modal fade " id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ajout du Ticket</h5>
+                    </div>
+                    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                        <div style="margin:1em">
+                            <select formControlName="type" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option selected Disabled >type de ticket</option>
+                        <option value="Ticket douvriers">Ticket douvriers</option>
+                        <option value="Ticket demployés">Ticket demployés</option>
+                        <option value="Ticket des cadres">Ticket des cadres</option>
+                        <option value="Ticket d'invités">Ticket d'invités</option>
+                    </select>
+                        </div>
+                        <div style="margin: 1em;">
+                            <input formControlName="id" class="form-control form-control-sm" type="text" placeholder="employee id" aria-label=".form-control-sm example">
+                        </div>
+                        <div style="margin:1em;">
+                            <input formControlName="nbr" class="form-control form-control-sm" type="number" placeholder="nbr de ticket" aria-label=".form-control-sm example">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()">
+                    Fermer
+                  </button>
+                            <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">
+                    Confirmer
+                  </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="logo">
+        <div class="row-button">
+            <button class="button" (click)="LogOut()"> Se déconnecter
+            </button>
+        </div>
+
+        <img src="assets/Teskerti__1_-removebg-preview.png">
+
+        <div class="tickets" [formGroup]="filterByDate">
+            <div style="margin: 2em;">
+                <input style="margin:20px" type="date" name="firstdate" (change)="testTheChange($event)" formControlName="startDate" />
+                <input type="date" name="lastdate" (change)="testTheChange($event)" formControlName="endDate" />
+            </div>
+        </div>
+        <button class="btn btn-success" (click)="openFormModal()">Ajout Ticket</button>
+    </div>
+
+</body>
